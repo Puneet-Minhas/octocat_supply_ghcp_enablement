@@ -42,7 +42,7 @@ erDiagram
 
 1. Clone this repository
 
-2. From VS Code, open a new Git bash terminal and install dependencies:
+2. From VS Code, open a new Git bash shell and install dependencies:
 
    ```bash
    make install

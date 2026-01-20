@@ -64,19 +64,21 @@ describe('[Entity] API', () => {
 ## 🔧 Running Tests
 
 ```bash
+# From api/ directory:
+
 # Run all tests
-npm run test:api
+npm run test 
 
 # Run tests with coverage
-npm run test:api -- -- --coverage
+npm run test:coverage 
 
 # Run specific test file
-npm run test:api -- src/routes/product.test.ts
+npm run test -- src/routes/product.test.ts 
 ```
 
 ## 📈 Success Criteria
 - [ ] Add route test files for Product and Supplier
-- [ ] All tests passing in CI/CD
+
 
 ## 🚀 Getting Started
 1. Start with `product.test.ts` - copy `branch.test.ts` pattern

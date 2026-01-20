@@ -21,11 +21,12 @@ A new **Planning mode** was shipped to VS Code in version 1.106 and helps build 
 
 #### Step 2: Implement with Agent Mode
 
-1. Switch to `Agent` mode. You can select `Claude Sonnet 4.5` or any other model of your choice.
-2. Click the `Start Implementation` button or prompt:
+1. Click the  `Start Implementation` button or,
+2. Switch to `Agent` mode. You can select `Claude Sonnet 4.5` or any other newer model and prompt:
    ```text
    Implement the plan you just produced.
    ```
+
 3. **Agent will:**
    - Create Cart component and page
    - Add routing
@@ -38,7 +39,7 @@ You can follow along as files are created/modified.  If it doesn't run the appli
 #### Step 3: Test and Iterate
 1. Run the application:
    ```bash
-   npm run dev
+   make dev
    ```
 2. Test in browser - 
 3. - If accessing through Codespace, click on 'Ports' tab to open port 5137:
@@ -102,7 +103,8 @@ Agent will:
 This specific prompt focuses on `product` and `supplier` routes.  However, Copilot could also be prompted to cover all routes if desired.  You can verify coverage as follows:
 
 ```bash
-npm run test:coverage --workspace=api
+# from api/ directory
+npm run test:coverage  
 ```
 
 Review the coverage report - it should be significantly improved. 
@@ -111,7 +113,7 @@ Click `Keep` to save these new tests to your codebase.
 
 ### What You Learned
 
-✅ **Prompt Files** - Reusable, documented workflows that can be improved over time
+✅ **Prompt Files** - Reusable, documented workflows that can be improved over time  
 ✅ **Iteration** - Agent iterates to fix failing tests automatically  
 
 **Value:** Comprehensive test suite that would take days to write manually
