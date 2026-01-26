@@ -94,26 +94,10 @@ The steps are just defined in `.github/prompts/handoff.prompt.md`.  You can of c
 
 > If interested, you can look at `.github/agents/bdd-specialist.agent.md` to see how this custom agent is defined.  You can create your own custom agents for your team as well!
 
-#### Step 3: Monitor from Mission Control
-
-1. Navigate to https://github.com/copilot/agents
-2. See all your active agent sessions 
-3. Click on the BDD session that should be in progress:
-   - Note you can view real-time progress and see commands executed
-     - Each `>` can be expanded to see more detail
-   - Also see the pull request details on the right
-4. **Steer mid-session by prompting Copilot:**
-   ```text
-   While you're at it, add error handling for network failures
-   ```
-
-   > Copilot will incorporate your feedback as it works.
 
 ### What You Learned
 
 ✅ **Custom Agents** - Specialized tools for specific domains  
-✅ **Mission Control** - Manage multiple agents like a project manager  
-✅ **Async Workflows** - Delegate and move on, check back later  
-✅ **Mid-Session Steering** - Guide agents as they work
+
 
 ---
