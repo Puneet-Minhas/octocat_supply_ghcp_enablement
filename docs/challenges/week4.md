@@ -83,20 +83,15 @@ We'll create a new branch, make a few realistic changes across the API, and open
 #### Step 3: Review Runs in GitHub Actions
 
 1. Navigate to the **Actions** tab and click on the **Copilot Code Review** workflow run
-2. Notice it runs:
-   - **CodeQL** security analysis
-   - **ESLint** code quality checks (in Agent)
-
-4. The review runs independently — it is not blocking your workflow
+2. The review runs independently — it is not blocking your workflow
 
 #### Step 4: Review Enhanced Feedback
 
-Once the Actions run has completed, go back to the pull request. You should see Copilot's review (typically starting with a **Pull Request Overview** section). The review includes:
+Once the Actions run has completed, go back to the pull request. You should see Copilot's review (typically starting with a **Pull Request Overview** section). The review would include:
 
 - **Security findings** from CodeQL scan
 - **Code quality issues** from ESLint
 - **Best practices** violations such as missing Swagger docs and not using React Query as per team standards
-- **Additional context** from Code Graph (not just PR changes)
 - **Instructions-based feedback** (checks against your `.github/instructions/`)
 
 #### Step 5: Implement Suggestions Automatically
@@ -116,7 +111,7 @@ Alternatively you can open a new comment:
 ✅ **Automatic Implementation** - Hand fixes back to agent  
 
 ----
-### **Scenario 2:** Your security team reports: *"We found 12 CodeQL alerts, 3 leaked secrets, and 47 code quality issues."*
+### **Scenario 2:** Fix Code Quality Issues using Copilot*
 
 **Your Challenge:** Triage and fix systematically using AI assistance.
 
