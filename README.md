@@ -106,6 +106,7 @@ This project is designed to showcase GitHub Copilot's capabilities. As such, it 
 | [Week 2](/docs/challenges/week2.md) | Use Copilot to build a new feature and improve test coverage | Plan mode, Agent mode, Vision, Prompt Files |
 | [Week 3](/docs/challenges/week3.md) | Enforce team standards and delegate tasks to the custom Agent | Custom Instructions, Custom Agent  |
 | [Week 4](/docs/challenges/week4.md) | Speed up code reviews and fix code quality issues using Copilot  | Code Review Agent, Code Quality |
+| [Week 5](/docs/challenges/week5.md) | Understanding and refactoring existing code using Copilot | Ask Mode, Agent Mode, Refactoring |
 ---
 
 
