@@ -49,6 +49,20 @@ describe('Terms of Service API', () => {
     });
   });
 
+  it('returns 400 when the file query parameter targets a hidden file', async () => {
+    const response = await request(app)
+      .get('/api/tos/download')
+      .query({ file: '.env' });
+
+    expect(response.status).toBe(400);
+    expect(response.body).toEqual({
+      error: {
+        code: 'VALIDATION_ERROR',
+        message: 'Validation error: Invalid file parameter',
+      },
+    });
+  });
+
   it('returns 404 when the requested ToS file does not exist', async () => {
     const response = await request(app)
       .get('/api/tos/download')

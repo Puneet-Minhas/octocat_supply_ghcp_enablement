@@ -103,13 +103,18 @@ router.get('/download', async (req, res, next) => {
     }
 
     const fileName = fileParam.trim();
-    if (fileName !== path.basename(fileName) || fileName.includes('\0')) {
+    if (fileName !== path.basename(fileName) || fileName.startsWith('.') || fileName.includes('\0')) {
       next(new ValidationError('Invalid file parameter'));
       return;
     }
 
     const fullPath = path.resolve(tosDataDirectory, fileName);
-    if (!fullPath.startsWith(`${tosDataDirectory}${path.sep}`)) {
+    const comparableBasePath =
+      process.platform === 'win32' ? tosDataDirectory.toLowerCase() : tosDataDirectory;
+    const comparableFullPath = process.platform === 'win32' ? fullPath.toLowerCase() : fullPath;
+    const relativePath = path.relative(comparableBasePath, comparableFullPath);
+
+    if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
       next(new ValidationError('Invalid file parameter'));
       return;
     }
