@@ -49,6 +49,20 @@ describe('Terms of Service API', () => {
     });
   });
 
+  it('returns 400 when the file query parameter contains Windows path separators', async () => {
+    const response = await request(app)
+      .get('/api/tos/download')
+      .query({ file: '..\\package.json' });
+
+    expect(response.status).toBe(400);
+    expect(response.body).toEqual({
+      error: {
+        code: 'VALIDATION_ERROR',
+        message: 'Validation error: Invalid file parameter',
+      },
+    });
+  });
+
   it('returns 400 when the file query parameter targets a hidden file', async () => {
     const response = await request(app)
       .get('/api/tos/download')

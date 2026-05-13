@@ -64,7 +64,7 @@
 import express from 'express';
 import fs from 'node:fs';
 import path from 'node:path';
-import { DatabaseError, NotFoundError, ValidationError } from '../utils/errors';
+import { ConfigurationError, NotFoundError, ValidationError } from '../utils/errors';
 
 interface TosVersionConfig {
   version: string;
@@ -93,6 +93,11 @@ function isTosVersionConfig(value: unknown): value is TosVersionConfig {
   );
 }
 
+function normalizePath(filePath: string): string {
+  const normalizedPath = path.normalize(filePath);
+  return process.platform === 'win32' ? normalizedPath.toLowerCase() : normalizedPath;
+}
+
 router.get('/download', async (req, res, next) => {
   try {
     const fileParam = req.query.file;
@@ -103,15 +108,20 @@ router.get('/download', async (req, res, next) => {
     }
 
     const fileName = fileParam.trim();
-    if (fileName !== path.basename(fileName) || fileName.startsWith('.') || fileName.includes('\0')) {
+    if (
+      fileName !== path.basename(fileName) ||
+      fileName.startsWith('.') ||
+      fileName.includes('\0') ||
+      fileName.includes('/') ||
+      fileName.includes('\\')
+    ) {
       next(new ValidationError('Invalid file parameter'));
       return;
     }
 
     const fullPath = path.resolve(tosDataDirectory, fileName);
-    const comparableBasePath =
-      process.platform === 'win32' ? tosDataDirectory.toLowerCase() : tosDataDirectory;
-    const comparableFullPath = process.platform === 'win32' ? fullPath.toLowerCase() : fullPath;
+    const comparableBasePath = normalizePath(tosDataDirectory);
+    const comparableFullPath = normalizePath(fullPath);
     const relativePath = path.relative(comparableBasePath, comparableFullPath);
 
     if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
@@ -143,23 +153,23 @@ router.get('/version', async (_req, res, next) => {
     const config: unknown = JSON.parse(rawConfig);
 
     if (!isTosVersionConfig(config)) {
-      next(new DatabaseError('Invalid ToS version configuration format', 'CONFIG_ERROR', 500));
+      next(new ConfigurationError('Invalid ToS version configuration format'));
       return;
     }
 
     res.json(config);
   } catch (error) {
     if (isErrnoException(error) && error.code === 'ENOENT') {
-      next(new DatabaseError('ToS version configuration not found', 'CONFIG_ERROR', 500));
+      next(new ConfigurationError('ToS version configuration not found'));
       return;
     }
 
     if (error instanceof SyntaxError) {
-      next(new DatabaseError('Invalid ToS version configuration format', 'CONFIG_ERROR', 500));
+      next(new ConfigurationError('Invalid ToS version configuration format'));
       return;
     }
 
-    next(new DatabaseError('Failed to load ToS version configuration', 'CONFIG_ERROR', 500));
+    next(new ConfigurationError('Failed to load ToS version configuration'));
   }
 });
 
