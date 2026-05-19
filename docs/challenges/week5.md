@@ -95,7 +95,7 @@ Use Agent mode.
    - Link to all other documentation
    ```
 
-   > **Note:** Copilot is great at reviewing code and generating documentation. Keep in mind you could always assign this type of task to Coding Agent if you wanted to delegate it.
+   > **Note:** Copilot is great at reviewing code and generating documentation. Keep in mind you could always assign this type of task to Cloud Agent if you wanted to delegate it.
 
 ### What You Learned
 
