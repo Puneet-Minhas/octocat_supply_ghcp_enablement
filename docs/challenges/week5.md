@@ -15,11 +15,11 @@
 4. **Close the quick chat**
 5. **Move to the chat window**, clear your history, and provide broader context in Ask Mode:
    ```
-   @workspace Explain the repository pattern used in this codebase. 
+   Explain the repository pattern used in this codebase. 
    How does it handle database connections and error mapping?
    ```
 
-   > **Note:** Agent mode will automatically analyze the workspace. In Ask mode you must specify `@workspace` to get this behavior.
+   > **Note:** Agent mode will automatically analyze the workspace.
 
 #### Step 2: Add Documentation
 
