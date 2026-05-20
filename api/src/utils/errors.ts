@@ -36,6 +36,13 @@ export class ConflictError extends DatabaseError {
   }
 }
 
+export class ConfigurationError extends DatabaseError {
+  constructor(message: string) {
+    super(message, 'CONFIG_ERROR', 500);
+    this.name = 'ConfigurationError';
+  }
+}
+
 /**
  * Handle database errors and convert SQLite-specific errors to appropriate types
  */
